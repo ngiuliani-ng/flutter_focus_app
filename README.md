@@ -11,3 +11,5 @@ A new Flutter application. Fudeo exercises.
         - Argument: **SplashPage**
     - Lesson 1.3: https://bit.ly/3trZi17
         - Argument: **LoginPage**
+    - Lesson 1.4: https://bit.ly/3doMLFV
+        - Argument: **RegisterPage**

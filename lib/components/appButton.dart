@@ -5,10 +5,12 @@ class AppButton extends StatelessWidget {
   AppButton({
     @required this.color,
     @required this.child,
+    @required this.onPressed,
   });
 
   final Color color;
   final Widget child;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class AppButton extends StatelessWidget {
       ),
       child: child,
       textColor: Colors.white,
-      onPressed: () {},
+      onPressed: onPressed,
     );
   }
 }

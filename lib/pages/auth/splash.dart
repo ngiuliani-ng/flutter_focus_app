@@ -61,6 +61,7 @@ class SplashPage extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       ),
                     ),
+                    onPressed: () {},
                   ),
                 ],
               ),

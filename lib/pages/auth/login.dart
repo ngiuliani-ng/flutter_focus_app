@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_focus_app/pages/auth/register.dart';
+
 import 'package:flutter_focus_app/components/appFormField.dart';
 import 'package:flutter_focus_app/components/appButton.dart';
 
@@ -9,17 +11,17 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
+      appBar: appBar(context),
       body: body(),
     );
   }
 
-  Widget appBar() {
+  Widget appBar(BuildContext context) {
     return AppBar(
       elevation: 0,
       actions: [
         TextButton(
-          onPressed: () {},
+          onPressed: () => Navigator.pushNamed(context, RegisterPage.routeName),
           child: Text(
             'Non hai ancora un account?',
             style: TextStyle(
@@ -44,7 +46,7 @@ class LoginPage extends StatelessWidget {
             Text(
               'Ben ritornato!',
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -62,7 +64,7 @@ class LoginPage extends StatelessWidget {
             ),
             AppFormField(
               label: 'Email',
-              icon: Icons.person,
+              icon: Icons.email,
               textInputType: TextInputType.emailAddress,
               hintText: 'Email',
               obscureText: false,
@@ -83,6 +85,7 @@ class LoginPage extends StatelessWidget {
             AppButton(
               color: Colors.blue,
               child: Text('Login'),
+              onPressed: () {},
             ),
           ],
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_focus_app/pages/auth/splash.dart';
 import 'package:flutter_focus_app/pages/auth/login.dart';
+import 'package:flutter_focus_app/pages/auth/register.dart';
 
 void main() {
   runApp(App());
@@ -26,6 +27,7 @@ class App extends StatelessWidget {
       routes: {
         SplashPage.routeName: (_) => SplashPage(),
         LoginPage.routeName: (_) => LoginPage(),
+        RegisterPage.routeName: (_) => RegisterPage(),
       },
       initialRoute: LoginPage.routeName,
     );
