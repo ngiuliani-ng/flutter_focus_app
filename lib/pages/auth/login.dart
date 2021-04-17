@@ -32,58 +32,60 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget body() {
-    return Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 16,
-          ),
-          Text(
-            'Ben ritornato!',
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 16,
             ),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            'Inserisci le tue credenziali per continuare',
-            style: TextStyle(
-              color: Colors.black45,
+            Text(
+              'Ben ritornato!',
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 64,
-          ),
-          AppFormField(
-            label: 'Email',
-            icon: Icons.person,
-            textInputType: TextInputType.emailAddress,
-            hintText: 'Email',
-            obscureText: false,
-          ),
-          SizedBox(
-            height: 32,
-          ),
-          AppFormField(
-            label: 'Password',
-            icon: Icons.lock,
-            textInputType: TextInputType.text,
-            hintText: 'Password',
-            obscureText: true,
-          ),
-          SizedBox(
-            height: 64,
-          ),
-          AppButton(
-            color: Colors.blue,
-            child: Text('Login'),
-          ),
-        ],
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              'Inserisci le tue credenziali per continuare',
+              style: TextStyle(
+                color: Colors.black45,
+              ),
+            ),
+            SizedBox(
+              height: 64,
+            ),
+            AppFormField(
+              label: 'Email',
+              icon: Icons.person,
+              textInputType: TextInputType.emailAddress,
+              hintText: 'Email',
+              obscureText: false,
+            ),
+            SizedBox(
+              height: 32,
+            ),
+            AppFormField(
+              label: 'Password',
+              icon: Icons.lock,
+              textInputType: TextInputType.text,
+              hintText: 'Password',
+              obscureText: true,
+            ),
+            SizedBox(
+              height: 64,
+            ),
+            AppButton(
+              color: Colors.blue,
+              child: Text('Login'),
+            ),
+          ],
+        ),
       ),
     );
   }
