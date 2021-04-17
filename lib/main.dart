@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_focus_app/pages/auth/splashPage.dart';
+import 'package:flutter_focus_app/pages/auth/splash.dart';
 
 void main() {
   runApp(App());
