@@ -7,5 +7,7 @@ A new Flutter application. Fudeo exercises.
 - Lessons:
     - Lesson 1.1: https://bit.ly/2Rvtf22
         - Argument: **Introduzione**
-    - Lesson 2.1: https://bit.ly/3uVdrUG
+    - Lesson 1.2: https://bit.ly/3uVdrUG
         - Argument: **SplashPage**
+    - Lesson 1.3: https://bit.ly/3trZi17
+        - Argument: **LoginPage**

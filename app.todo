@@ -1,3 +1,8 @@
 App:
     Grafica:
         ✔ Sviluppo SplashPage. @started(21-04-16 05:36) @done(21-04-16 06:16) @lasted(40m33s)
+        ✔ Sviluppo LoginPage. @started(21-04-17 08:39) @done(21-04-17 10:29) @lasted(1h50m42s)
+            ✔ Sviluppo AppFormField. @started(21-04-17 09:17) @done(21-04-17 10:08) @lasted(51m5s)
+                Componente custom riutilizzabile all'interno di tutta l'app.
+            ✔ Estrazione MaterialButton SplashPage. @started(21-04-17 10:10) @done(21-04-17 10:27) @lasted(17m40s)
+                Componente custom riutilizzabile all'interno di tutta l'app.

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_focus_app/components/appButton.dart';
+
 class SplashPage extends StatelessWidget {
   static String routeName = '/splash';
 
@@ -47,13 +49,8 @@ class SplashPage extends StatelessWidget {
                   SizedBox(
                     height: 32,
                   ),
-                  MaterialButton(
-                    height: 50,
-                    minWidth: double.infinity,
+                  AppButton(
                     color: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
                     child: SizedBox(
                       height: 25,
                       width: 25,
@@ -64,7 +61,6 @@ class SplashPage extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       ),
                     ),
-                    onPressed: () {},
                   ),
                 ],
               ),
