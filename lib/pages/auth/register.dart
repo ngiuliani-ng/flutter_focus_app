@@ -130,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   CircleAvatar(
                     backgroundColor: Colors.black12,
-                    maxRadius: 48,
+                    radius: 48,
                   ),
                   SizedBox(
                     height: 8,
