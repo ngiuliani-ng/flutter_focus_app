@@ -54,9 +54,13 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void onSubmitData() {
-    if (_isPremiumAccount && _pageIndex == 0) {
+    if (!_isPremiumAccount && _pageIndex == 0) {
+      print('Registrazione Standard');
+    } else if (_isPremiumAccount && _pageIndex == 0) {
       _pageController.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.linear);
-    } else if (_isPremiumAccount && _pageIndex == 1) {}
+    } else if (_isPremiumAccount && _pageIndex == 1) {
+      print('Registrazione Premium');
+    }
   }
 
   @override
@@ -273,7 +277,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             AppButton(
               color: Colors.blue,
-              child: Text('Attiva il tuo piano | \$ ${getPlansPrice()}'),
+              child: Text('Attiva il tuo piano | € ${getPlansPrice()}'),
               onPressed: onSubmitData,
             ),
           ],

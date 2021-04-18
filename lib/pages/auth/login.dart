@@ -35,6 +35,8 @@ class LoginPage extends StatelessWidget {
 
   Widget body() {
     return SingleChildScrollView(
+      /// Qui il [Padding] è stato incapsulato all'interno del [SingleChildScrollView]
+      /// per risolvere il problema della sovrapposizione della tastiera virtuale sull'[AppButton].
       child: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -44,7 +46,7 @@ class LoginPage extends StatelessWidget {
               height: 16,
             ),
             Text(
-              'Ben ritornato!',
+              'Bentornato!',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -85,7 +87,9 @@ class LoginPage extends StatelessWidget {
             AppButton(
               color: Colors.blue,
               child: Text('Login'),
-              onPressed: () {},
+              onPressed: () {
+                print('Login');
+              },
             ),
           ],
         ),
