@@ -8,6 +8,10 @@ import 'package:flutter_focus_app/components/appButton.dart';
 class LoginPage extends StatelessWidget {
   static String routeName = '/login';
 
+  void onSubmit() {
+    print('Login');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,9 +91,7 @@ class LoginPage extends StatelessWidget {
             AppButton(
               color: Colors.blue,
               child: Text('Login'),
-              onPressed: () {
-                print('Login');
-              },
+              onPressed: onSubmit,
             ),
           ],
         ),

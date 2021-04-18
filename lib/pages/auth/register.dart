@@ -16,7 +16,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _isPremiumAccount = false;
   PageController _pageController = PageController();
   int _pageIndex = 0;
-  PlansType _selectedPlansType = PlansType.Base;
+  PlansType _selectedPlanType = PlansType.Base;
 
   @override
   void initState() {
@@ -34,14 +34,14 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
-  void switchPlansType(PlansType type) {
+  void switchPlanType(PlansType type) {
     setState(() {
-      _selectedPlansType = type;
+      _selectedPlanType = type;
     });
   }
 
-  getPlansPrice() {
-    switch (_selectedPlansType) {
+  getPlanPrice() {
+    switch (_selectedPlanType) {
       case PlansType.Base:
         return 1.99;
       case PlansType.Advanced:
@@ -53,13 +53,13 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  void onSubmitData() {
+  void onSubmit() {
     if (!_isPremiumAccount && _pageIndex == 0) {
-      print('Registrazione Standard');
+      print('Registrazione Account Standard');
     } else if (_isPremiumAccount && _pageIndex == 0) {
       _pageController.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.linear);
     } else if (_isPremiumAccount && _pageIndex == 1) {
-      print('Registrazione Premium');
+      print('Registrazione Account Premium');
     }
   }
 
@@ -214,7 +214,7 @@ class _RegisterPageState extends State<RegisterPage> {
             AppButton(
               color: Colors.blue,
               child: Text(_isPremiumAccount ? 'Personalizza il tuo account' : 'Crea il tuo account'),
-              onPressed: onSubmitData,
+              onPressed: onSubmit,
             ),
           ],
         ),
@@ -277,8 +277,8 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             AppButton(
               color: Colors.blue,
-              child: Text('Attiva il tuo piano | € ${getPlansPrice()}'),
-              onPressed: onSubmitData,
+              child: Text('Attiva il tuo piano | € ${getPlanPrice()}'),
+              onPressed: onSubmit,
             ),
           ],
         ),
@@ -293,8 +293,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }) {
     return RadioListTile(
       value: value,
-      groupValue: _selectedPlansType,
-      onChanged: (type) => switchPlansType(type),
+      groupValue: _selectedPlanType,
+      onChanged: (type) => switchPlanType(type),
       title: Text(
         title,
         style: TextStyle(
