@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_focus_app/utility/isValid.dart';
+
 import 'package:flutter_focus_app/models/plansType.dart';
 
 import 'package:flutter_focus_app/components/appFormField.dart';
@@ -13,10 +15,22 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController surnameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmController = TextEditingController();
+
   bool _isPremiumAccount = false;
   PageController _pageController = PageController();
   int _pageIndex = 0;
   PlansType _selectedPlanType = PlansType.Base;
+
+  String nameError;
+  String surnameError;
+  String emailError;
+  String passwordError;
+  String passwordConfirmError;
 
   @override
   void initState() {
@@ -54,11 +68,40 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void onSubmit() {
-    if (!_isPremiumAccount && _pageIndex == 0) {
-      print('Registrazione Account Standard');
-    } else if (_isPremiumAccount && _pageIndex == 0) {
-      _pageController.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.linear);
-    } else if (_isPremiumAccount && _pageIndex == 1) {
+    if (_pageIndex == 0) {
+      final name = nameController.text.trim();
+      final surname = surnameController.text.trim();
+      final email = emailController.text.trim();
+      final password = passwordController.text.trim();
+      final passwordConfirm = passwordConfirmController.text.trim();
+
+      // Reset error.
+      setState(() {
+        nameError = null;
+        surnameError = null;
+        emailError = null;
+        passwordError = null;
+        passwordConfirmError = null;
+      });
+
+      final valid = isValidBlock((bool Function(bool, Function) when) {
+        when(name.isEmpty, () => setState(() => nameError = 'Campo obbligatorio'));
+        when(surname.isEmpty, () => setState(() => surnameError = 'Campo obbligatorio'));
+        when(email.isEmpty, () => setState(() => emailError = 'Campo obbligatorio'));
+        when(email.isNotEmpty && !isValidEmail(email), () => setState(() => emailError = 'Email non valida'));
+        when(password.isEmpty, () => setState(() => passwordError = 'Campo obbligatorio'));
+        when(password.isNotEmpty && password.length < 8, () => setState(() => passwordError = 'Per la tua password utilizza almeno 8 caratteri'));
+        when(passwordConfirm.isEmpty, () => setState(() => passwordConfirmError = 'Campo obbligatorio'));
+        when(password.isNotEmpty && passwordConfirm.isNotEmpty && password != passwordConfirm,
+            () => setState(() => passwordConfirmError = 'Le password non corrispondono'));
+      });
+
+      if (valid && !_isPremiumAccount) {
+        print('Registrazione Account Standard');
+      } else if (valid && _isPremiumAccount) {
+        _pageController.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.linear);
+      }
+    } else if (_pageIndex == 1) {
       print('Registrazione Account Premium');
     }
   }
@@ -153,6 +196,8 @@ class _RegisterPageState extends State<RegisterPage> {
               textInputType: TextInputType.text,
               hintText: 'Nome',
               obscureText: false,
+              controller: nameController,
+              error: nameError,
             ),
             SizedBox(
               height: 32,
@@ -163,6 +208,8 @@ class _RegisterPageState extends State<RegisterPage> {
               textInputType: TextInputType.text,
               hintText: 'Cognome',
               obscureText: false,
+              controller: surnameController,
+              error: surnameError,
             ),
             SizedBox(
               height: 32,
@@ -173,6 +220,8 @@ class _RegisterPageState extends State<RegisterPage> {
               textInputType: TextInputType.emailAddress,
               hintText: 'Email',
               obscureText: false,
+              controller: emailController,
+              error: emailError,
             ),
             SizedBox(
               height: 32,
@@ -183,6 +232,8 @@ class _RegisterPageState extends State<RegisterPage> {
               textInputType: TextInputType.text,
               hintText: 'Password',
               obscureText: true,
+              controller: passwordController,
+              error: passwordError,
             ),
             SizedBox(
               height: 32,
@@ -193,6 +244,8 @@ class _RegisterPageState extends State<RegisterPage> {
               textInputType: TextInputType.text,
               hintText: 'Conferma Password',
               obscureText: true,
+              controller: passwordConfirmController,
+              error: passwordConfirmError,
             ),
             SizedBox(
               height: 32,

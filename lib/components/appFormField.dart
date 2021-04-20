@@ -8,6 +8,8 @@ class AppFormField extends StatelessWidget {
     @required this.textInputType,
     @required this.hintText,
     @required this.obscureText,
+    this.controller,
+    this.error,
   });
 
   final String label;
@@ -15,6 +17,8 @@ class AppFormField extends StatelessWidget {
   final TextInputType textInputType;
   final String hintText;
   final bool obscureText;
+  final TextEditingController controller;
+  final String error;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +59,21 @@ class AppFormField extends StatelessWidget {
                     border: InputBorder.none,
                   ),
                   obscureText: obscureText,
+                  controller: controller,
                 ),
               ),
             ],
+          ),
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        Text(
+          error != null ? error : '',
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Colors.red,
           ),
         ),
       ],
