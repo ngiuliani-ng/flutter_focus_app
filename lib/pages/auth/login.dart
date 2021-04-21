@@ -25,38 +25,16 @@ class _LoginPageState extends State<LoginPage> {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
-    // Reset error.
     setState(() {
       emailError = null;
       passwordError = null;
     });
 
     final valid = isValidBlock((bool Function(bool, Function) when) {
-      when(email.isEmpty, () => setState(() => emailError = 'Campo obbligatorio'));
-      when(email.isNotEmpty && !isValidEmail(email), () => setState(() => emailError = 'Email non valida'));
-      when(password.isEmpty, () => setState(() => passwordError = 'Campo obbligatorio'));
+      when(email.isEmpty, () => setState(() => emailError = 'Inserisci un indirizzo email'));
+      when(email.isNotEmpty && !isValidEmail(email), () => setState(() => emailError = 'Inserisci un indirizzo email valido'));
+      when(password.isEmpty, () => setState(() => passwordError = 'Inserisci una password'));
     });
-
-    // bool valid = true;
-    //
-    // setState(() {
-    //   emailError = null;
-    //   passwordError = null;
-    // });
-    //
-    // if (email.isEmpty) {
-    //   setState(() {
-    //     emailError = 'Campo obbligatorio';
-    //     valid = false;
-    //   });
-    // }
-    //
-    // if (password.isEmpty) {
-    //   setState(() {
-    //     passwordError = 'Campo obbligatorio';
-    //     valid = false;
-    //   });
-    // }
 
     if (valid) {
       print('Login');
@@ -80,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Text(
             'Non hai ancora un account?',
             style: TextStyle(
-              color: Colors.black45,
+              color: Color(0xff1a73e8),
             ),
           ),
         ),
@@ -111,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 8,
             ),
             Text(
-              'Inserisci le tue credenziali per continuare',
+              'Inserisci le tue credenziali',
               style: TextStyle(
                 color: Colors.black45,
               ),
@@ -144,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 64,
             ),
             AppButton(
-              color: Colors.blue,
+              color: Color(0xff1a73e8),
               child: Text('Login'),
               onPressed: onSubmit,
             ),

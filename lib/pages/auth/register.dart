@@ -75,7 +75,6 @@ class _RegisterPageState extends State<RegisterPage> {
       final password = passwordController.text.trim();
       final passwordConfirm = passwordConfirmController.text.trim();
 
-      // Reset error.
       setState(() {
         nameError = null;
         surnameError = null;
@@ -85,13 +84,13 @@ class _RegisterPageState extends State<RegisterPage> {
       });
 
       final valid = isValidBlock((bool Function(bool, Function) when) {
-        when(name.isEmpty, () => setState(() => nameError = 'Campo obbligatorio'));
-        when(surname.isEmpty, () => setState(() => surnameError = 'Campo obbligatorio'));
-        when(email.isEmpty, () => setState(() => emailError = 'Campo obbligatorio'));
-        when(email.isNotEmpty && !isValidEmail(email), () => setState(() => emailError = 'Email non valida'));
-        when(password.isEmpty, () => setState(() => passwordError = 'Campo obbligatorio'));
-        when(password.isNotEmpty && password.length < 8, () => setState(() => passwordError = 'Per la tua password utilizza almeno 8 caratteri'));
-        when(passwordConfirm.isEmpty, () => setState(() => passwordConfirmError = 'Campo obbligatorio'));
+        when(name.isEmpty, () => setState(() => nameError = 'Inserisci il nome'));
+        when(surname.isEmpty, () => setState(() => surnameError = 'Inserisci il cognome'));
+        when(email.isEmpty, () => setState(() => emailError = 'Inserisci un indirizzo email'));
+        when(email.isNotEmpty && !isValidEmail(email), () => setState(() => emailError = 'Inserisci un indirizzo email valido'));
+        when(password.isEmpty, () => setState(() => passwordError = 'Inserisci una password'));
+        when(password.isNotEmpty && password.length < 8, () => setState(() => passwordError = 'Inserisci una password almeno di 8 caratteri'));
+        when(passwordConfirm.isEmpty, () => setState(() => passwordConfirmError = 'Le password non corrispondono'));
         when(password.isNotEmpty && passwordConfirm.isNotEmpty && password != passwordConfirm,
             () => setState(() => passwordConfirmError = 'Le password non corrispondono'));
       });
@@ -129,7 +128,7 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Text(
             'Hai già un account?',
             style: TextStyle(
-              color: Colors.black45,
+              color: Color(0xff1a73e8),
             ),
           ),
         ),
@@ -158,7 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 8,
             ),
             Text(
-              'Inserisci i dati richiesti per creare il tuo account',
+              'Inserisci i tuoi dati',
               style: TextStyle(
                 color: Colors.black45,
               ),
@@ -173,13 +172,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   CircleAvatar(
                     backgroundColor: Colors.black12,
-                    radius: 48,
+                    radius: 60,
                   ),
                   SizedBox(
                     height: 8,
                   ),
                   Text(
-                    'Carica immagine',
+                    'Immagine',
                     style: TextStyle(
                       color: Colors.black45,
                     ),
@@ -251,6 +250,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 32,
             ),
             SwitchListTile(
+              activeColor: Color(0xff1a73e8),
               title: Text(
                 'Registra un account premium',
                 style: TextStyle(
@@ -265,7 +265,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 64,
             ),
             AppButton(
-              color: Colors.blue,
+              color: Color(0xff1a73e8),
               child: Text(_isPremiumAccount ? 'Personalizza il tuo account' : 'Crea il tuo account'),
               onPressed: onSubmit,
             ),
@@ -296,7 +296,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 8,
             ),
             Text(
-              'A seconda del piano scelto avrai diversi vantaggi',
+              'Seleziona i tuoi vantaggi',
               style: TextStyle(
                 color: Colors.black45,
               ),
@@ -329,7 +329,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 64,
             ),
             AppButton(
-              color: Colors.blue,
+              color: Color(0xff1a73e8),
               child: Text('Attiva il tuo piano | € ${getPlanPrice()}'),
               onPressed: onSubmit,
             ),
@@ -345,6 +345,7 @@ class _RegisterPageState extends State<RegisterPage> {
     @required PlansType value,
   }) {
     return RadioListTile(
+      activeColor: Color(0xff1a73e8),
       value: value,
       groupValue: _selectedPlanType,
       onChanged: (type) => switchPlanType(type),
