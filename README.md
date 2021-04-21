@@ -19,3 +19,5 @@ A new Flutter application. Fudeo exercises.
         - Argument: **Introduzione**
     - Lesson 2.2: https://bit.ly/3x2NtAx
         - Argument: **Validazione & Gestione Errori**
+    - Lesson 2.3: https://bit.ly/3xbggTv
+        - Argument: **Selezionare Immagine**

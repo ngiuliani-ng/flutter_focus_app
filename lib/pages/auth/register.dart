@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+
+import 'package:image_picker/image_picker.dart';
 
 import 'package:flutter_focus_app/utility/isValid.dart';
 
@@ -21,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController = TextEditingController();
 
+  File _userAvatar;
   bool _isPremiumAccount = false;
   PageController _pageController = PageController();
   int _pageIndex = 0;
@@ -90,7 +95,9 @@ class _RegisterPageState extends State<RegisterPage> {
         when(email.isNotEmpty && !isValidEmail(email), () => setState(() => emailError = 'Inserisci un indirizzo email valido'));
         when(password.isEmpty, () => setState(() => passwordError = 'Inserisci una password'));
         when(password.isNotEmpty && password.length < 8, () => setState(() => passwordError = 'Inserisci una password almeno di 8 caratteri'));
-        when(passwordConfirm.isEmpty, () => setState(() => passwordConfirmError = 'Le password non corrispondono'));
+        when(passwordConfirm.isEmpty, () => setState(() => passwordConfirmError = 'Inserisci una password'));
+        when(password.isNotEmpty && passwordConfirm.isEmpty && password != passwordConfirm,
+            () => setState(() => passwordConfirmError = 'Le password non corrispondono'));
         when(password.isNotEmpty && passwordConfirm.isNotEmpty && password != passwordConfirm,
             () => setState(() => passwordConfirmError = 'Le password non corrispondono'));
       });
@@ -102,6 +109,17 @@ class _RegisterPageState extends State<RegisterPage> {
       }
     } else if (_pageIndex == 1) {
       print('Registrazione Account Premium');
+    }
+  }
+
+  void selectImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _userAvatar = File(pickedFile.path);
+      });
     }
   }
 
@@ -165,25 +183,29 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(
               height: 64,
             ),
-            SizedBox(
-              width: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.black12,
-                    radius: 60,
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    'Immagine',
-                    style: TextStyle(
-                      color: Colors.black45,
+            GestureDetector(
+              onTap: selectImage,
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.black12,
+                      backgroundImage: _userAvatar == null ? null : FileImage(_userAvatar),
+                      radius: 60,
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      'Immagine',
+                      style: TextStyle(
+                        color: Colors.black45,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(

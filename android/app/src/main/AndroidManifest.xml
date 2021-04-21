@@ -2,7 +2,8 @@
     package="com.ngiuliani.flutter_focus_app">
    <application
         android:label="flutter_focus_app"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
