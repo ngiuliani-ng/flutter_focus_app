@@ -18,3 +18,14 @@ App:
         ✔ RegisterPage. @started(21-04-20 05:14) @done(21-04-20 06:27) @lasted(1h13m3s)
         ✔ Selezionare un'immagine dalla libreria. @started(21-04-21 05:47) @done(21-04-21 06:28) @lasted(41m47s)
             Libreria: https://pub.dev/packages/image_picker
+    Repository Pattern:
+        Il Repository Pattern centralizza tutte le chiamate verso un qualsiasi servizio esterno.
+        Ogni interfaccia, quando vuole fare una chiamata, deve obbligatoriamente passare per questo punto.
+        Libreria: https://pub.dev/packages/http
+        Libreria: https://pub.dev/packages/query_params
+        ✔ Repository. @started(21-04-22 06:33) @done(21-04-23 06:44) @lasted(1d11m51s)
+            ✔ .get @started(21-04-23 04:50) @done(21-04-23 06:44) @lasted(1h54m52s)
+            ✔ .post @started(21-04-23 04:50) @done(21-04-23 06:44) @lasted(1h54m53s)
+            ✔ .patch @started(21-04-23 04:50) @done(21-04-23 06:44) @lasted(1h54m53s)
+            ✔ .delete @started(21-04-23 04:50) @done(21-04-23 06:44) @lasted(1h54m54s)
+            ✔ .postMultipart @started(21-04-23 04:50) @done(21-04-23 06:44) @lasted(1h54m55s)
