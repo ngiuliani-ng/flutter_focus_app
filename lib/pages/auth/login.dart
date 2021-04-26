@@ -4,6 +4,8 @@ import 'package:flutter_focus_app/utility/isValid.dart';
 
 import 'package:flutter_focus_app/repositories/repository.dart';
 
+import 'package:flutter_focus_app/models/user.dart';
+
 import 'package:flutter_focus_app/pages/auth/register.dart';
 import 'package:flutter_focus_app/pages/home/home.dart';
 
@@ -30,6 +32,8 @@ class _LoginPageState extends State<LoginPage> {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
+    UserModel userData;
+
     setState(() {
       emailError = null;
       passwordError = null;
@@ -44,9 +48,8 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       await getIt.get<Repository>().userRepository.login(email, password);
-
-      /// Questo metodo ci permette di eliminare la schermata corrente [LoginPage], sostituendola poi con la [HomePage].
-      await Navigator.popAndPushNamed(context, HomePage.routeName);
+      userData = await getIt.get<Repository>().userRepository.profile();
+      await Navigator.popAndPushNamed(context, HomePage.routeName, arguments: userData);
     } catch (error) {
       print('Error: $error');
 

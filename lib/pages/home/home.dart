@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_focus_app/repositories/repository.dart';
 
+import 'package:flutter_focus_app/models/user.dart';
+
 import 'package:flutter_focus_app/pages/auth/login.dart';
 
 import 'package:flutter_focus_app/main.dart';
@@ -21,13 +23,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final UserModel userData = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
-      appBar: appBar(),
+      appBar: appBar(userData),
       body: body(),
     );
   }
 
-  Widget appBar() {
+  Widget appBar(UserModel userData) {
     return AppBar(
       elevation: 0,
       centerTitle: false,
@@ -35,13 +39,14 @@ class _HomePageState extends State<HomePage> {
       leading: Center(
         child: CircleAvatar(
           backgroundColor: Colors.black12,
+          backgroundImage: NetworkImage(userData.avatarUrl),
         ),
       ),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Nome Cognome',
+            userData.fullName,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -51,7 +56,7 @@ class _HomePageState extends State<HomePage> {
             height: 2,
           ),
           Text(
-            'example@gmail.com',
+            userData.email,
             style: TextStyle(
               fontSize: 12,
               color: Colors.black45,
