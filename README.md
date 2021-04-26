@@ -27,3 +27,7 @@ A new Flutter application. Fudeo exercises.
         - Argument: **Repository Pattern**
     - Lesson 3.3: https://bit.ly/3sTyMg8
         - Argument: **UserRepository**
+    - Lesson 4.1: https://bit.ly/3tTtH8M
+        - Argument: **Introduzione**
+    - Lesson 4.2: https://bit.ly/32Lupcl
+        - Argument: **SessionRepository**

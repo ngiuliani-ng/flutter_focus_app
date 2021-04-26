@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:query_params/query_params.dart';
 
 import 'package:flutter_focus_app/repositories/userRepository.dart';
+import 'package:flutter_focus_app/repositories/sessionRepository.dart';
 
 const String HOST = "https://tmpserver.vercel.app";
 
@@ -11,11 +12,13 @@ class Repository {
   HttpClient http;
 
   UserRepository userRepository;
+  SessionRepository sessionRepository;
 
   Repository() {
     http = HttpClient(this);
 
     userRepository = UserRepository(this);
+    sessionRepository = SessionRepository(this);
   }
 }
 

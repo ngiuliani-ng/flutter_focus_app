@@ -27,6 +27,7 @@ class UserRepository {
 
     if (response.statusCode == 200) {
       final token = data['token'];
+      repository.sessionRepository.setToken(token: token);
       return token;
     }
 
@@ -60,6 +61,7 @@ class UserRepository {
 
     if (response.statusCode == 200) {
       final token = data['token'];
+      repository.sessionRepository.setToken(token: token);
       return token;
     }
 
