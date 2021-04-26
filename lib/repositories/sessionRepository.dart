@@ -11,7 +11,7 @@ class SessionRepository {
 
   String token;
 
-  void init() async {
+  Future<void> init() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     this.token = sharedPreferences.getString('TOKEN');
   }
@@ -20,7 +20,15 @@ class SessionRepository {
     this.token = token;
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setString('TOKEN', token);
+
+    if (token == null)
+      sharedPreferences.remove('TOKEN');
+    else
+      sharedPreferences.setString('TOKEN', token);
+  }
+
+  void logout() async {
+    setToken(token: null);
   }
 
   bool isLogged() {

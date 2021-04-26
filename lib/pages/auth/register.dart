@@ -10,6 +10,8 @@ import 'package:flutter_focus_app/repositories/repository.dart';
 
 import 'package:flutter_focus_app/models/plansType.dart';
 
+import 'package:flutter_focus_app/pages/home/home.dart';
+
 import 'package:flutter_focus_app/components/appFormField.dart';
 import 'package:flutter_focus_app/components/appButton.dart';
 
@@ -110,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
       _pageController.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.linear);
     } else {
       try {
-        final token = await getIt.get<Repository>().userRepository.register(
+        await getIt.get<Repository>().userRepository.register(
               name,
               surname,
               email,
@@ -118,9 +120,11 @@ class _RegisterPageState extends State<RegisterPage> {
               _selectedPlanType,
               _userAvatar,
             );
-        print(token);
+
+        /// Questo metodo ci permette di eliminare la schermata corrente [RegisterPage], sostituendola poi con la [HomePage].
+        await Navigator.popAndPushNamed(context, HomePage.routeName);
       } catch (error) {
-        print(error);
+        print('Error: $error');
       }
     }
   }

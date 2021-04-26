@@ -5,6 +5,7 @@ import 'package:flutter_focus_app/utility/isValid.dart';
 import 'package:flutter_focus_app/repositories/repository.dart';
 
 import 'package:flutter_focus_app/pages/auth/register.dart';
+import 'package:flutter_focus_app/pages/home/home.dart';
 
 import 'package:flutter_focus_app/components/appFormField.dart';
 import 'package:flutter_focus_app/components/appButton.dart';
@@ -42,9 +43,13 @@ class _LoginPageState extends State<LoginPage> {
     if (!valid) return;
 
     try {
-      final token = await getIt.get<Repository>().userRepository.login(email, password);
-      print(token);
+      await getIt.get<Repository>().userRepository.login(email, password);
+
+      /// Questo metodo ci permette di eliminare la schermata corrente [LoginPage], sostituendola poi con la [HomePage].
+      await Navigator.popAndPushNamed(context, HomePage.routeName);
     } catch (error) {
+      print('Error: $error');
+
       if ((error as RequestError).error == 'INVALID_CREDENTIALS') {
         setState(() {
           emailError = 'Credenziali non valide';
@@ -65,6 +70,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget appBar() {
     return AppBar(
       elevation: 0,
+      automaticallyImplyLeading: false,
       actions: [
         TextButton(
           onPressed: () => Navigator.pushNamed(context, RegisterPage.routeName),

@@ -1,9 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+
+import 'package:flutter_focus_app/repositories/repository.dart';
+
+import 'package:flutter_focus_app/pages/home/home.dart';
+import 'package:flutter_focus_app/pages/auth/login.dart';
 
 import 'package:flutter_focus_app/components/appButton.dart';
 
-class SplashPage extends StatelessWidget {
+import 'package:flutter_focus_app/main.dart';
+
+class SplashPage extends StatefulWidget {
   static String routeName = '/splash';
+
+  @override
+  _SplashPageState createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await getIt.get<Repository>().sessionRepository.init();
+      bool isLogged = getIt.get<Repository>().sessionRepository.isLogged();
+
+      if (isLogged) {
+        await Future.delayed(Duration(seconds: 2));
+        await Navigator.popAndPushNamed(context, HomePage.routeName);
+      } else {
+        await Future.delayed(Duration(seconds: 2));
+        await Navigator.popAndPushNamed(context, LoginPage.routeName);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

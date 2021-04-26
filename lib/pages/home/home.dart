@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_focus_app/repositories/repository.dart';
+
+import 'package:flutter_focus_app/pages/auth/login.dart';
+
+import 'package:flutter_focus_app/main.dart';
+
 class HomePage extends StatefulWidget {
   static String routeName = '/home';
 
@@ -8,6 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void logout() async {
+    getIt.get<Repository>().sessionRepository.logout();
+    await Navigator.popAndPushNamed(context, LoginPage.routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,9 +62,7 @@ class _HomePageState extends State<HomePage> {
       actions: [
         IconButton(
           icon: Icon(Icons.logout),
-          onPressed: () {
-            print('Logout');
-          },
+          onPressed: logout,
         ),
       ],
     );

@@ -47,4 +47,9 @@ App:
                 Libreria: https://pub.dev/packages/shared_preferences
             ✔ Definizione SessionRepository all'interno del Repository. @done(21-04-26 13:35)
         ✔ Salvataggio token durante .login e .register @done(21-04-26 13:43)
-        ✔ Aggiunta token dinamicamente ai metodi del Repository. @done(21-04-26 14:20)
+        ✔ Aggiunto token dinamicamente ai metodi del Repository. @done(21-04-26 14:20)
+        ✔ Apertura HomePage dopo il .login @done(21-04-26 14:52)
+        ✔ Apertura HomePage dopo il .register @done(21-04-26 14:52)
+        ✔ Inizializzazione SessionRepository. nella SplashPage. @done(21-04-26 15:47)
+            ✔ Verifica token. @done(21-04-26 15:47)
+        ✔ Definizione .logout nella HomePage. @done(21-04-26 15:47)

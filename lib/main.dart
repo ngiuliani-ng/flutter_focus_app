@@ -39,7 +39,7 @@ class App extends StatelessWidget {
         RegisterPage.routeName: (_) => RegisterPage(),
         HomePage.routeName: (_) => HomePage(),
       },
-      initialRoute: LoginPage.routeName,
+      initialRoute: SplashPage.routeName,
     );
   }
 }
