@@ -30,6 +30,16 @@ class HttpClient {
     client = http.Client();
   }
 
+  Map<String, String> headers() {
+    if (repository.sessionRepository.isLogged()) {
+      return {
+        'Authorization': 'Bearer ${repository.sessionRepository.token}',
+      };
+    } else {
+      return {};
+    }
+  }
+
   Uri buildUrl(String url, Map queryParameters) {
     final params = URLQueryParams();
 
@@ -51,7 +61,7 @@ class HttpClient {
     String url, {
     Map queryParameters,
   }) {
-    return http.get(buildUrl(url, queryParameters));
+    return http.get(buildUrl(url, queryParameters), headers: headers());
   }
 
   Future<http.Response> post(
@@ -59,7 +69,7 @@ class HttpClient {
     Map queryParameters,
     Map<String, dynamic> bodyParameters,
   }) {
-    return http.post(buildUrl(url, queryParameters), body: encodeBody(bodyParameters));
+    return http.post(buildUrl(url, queryParameters), headers: headers(), body: encodeBody(bodyParameters));
   }
 
   Future<http.Response> patch(
@@ -67,14 +77,14 @@ class HttpClient {
     Map queryParameters,
     Map<String, dynamic> bodyParameters,
   }) {
-    return http.patch(buildUrl(url, queryParameters), body: encodeBody(bodyParameters));
+    return http.patch(buildUrl(url, queryParameters), headers: headers(), body: encodeBody(bodyParameters));
   }
 
   Future<http.Response> delete(
     String url, {
     Map queryParameters,
   }) {
-    return http.delete(buildUrl(url, queryParameters));
+    return http.delete(buildUrl(url, queryParameters), headers: headers());
   }
 
   Future<http.Response> postMultipart(
@@ -84,6 +94,7 @@ class HttpClient {
     Map<String, File> fileParameters = const {},
   }) async {
     var request = http.MultipartRequest('POST', buildUrl(url, queryParameters ?? {}));
+    request.headers.addAll(headers());
 
     bodyParameters.forEach((key, value) {
       request.fields[key] = value;

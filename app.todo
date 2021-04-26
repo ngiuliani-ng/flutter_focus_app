@@ -45,5 +45,6 @@ App:
         ✔ SessionRepository. @done(21-04-26 13:34)
             ✔ Salvataggio token in locale. @done(21-04-26 13:34)
                 Libreria: https://pub.dev/packages/shared_preferences
-        ✔ Definizione SessionRepository all'interno del Repository. @done(21-04-26 13:35)
+            ✔ Definizione SessionRepository all'interno del Repository. @done(21-04-26 13:35)
         ✔ Salvataggio token durante .login e .register @done(21-04-26 13:43)
+        ✔ Aggiunta token dinamicamente ai metodi del Repository. @done(21-04-26 14:20)

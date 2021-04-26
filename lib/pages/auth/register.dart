@@ -110,7 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
       _pageController.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.linear);
     } else {
       try {
-        final jwt = await getIt.get<Repository>().userRepository.register(
+        final token = await getIt.get<Repository>().userRepository.register(
               name,
               surname,
               email,
@@ -118,8 +118,7 @@ class _RegisterPageState extends State<RegisterPage> {
               _selectedPlanType,
               _userAvatar,
             );
-
-        print('JWT: $jwt');
+        print(token);
       } catch (error) {
         print(error);
       }

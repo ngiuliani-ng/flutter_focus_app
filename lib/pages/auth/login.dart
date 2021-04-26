@@ -42,8 +42,8 @@ class _LoginPageState extends State<LoginPage> {
     if (!valid) return;
 
     try {
-      final jwt = await getIt.get<Repository>().userRepository.login(email, password);
-      print('JWT: $jwt');
+      final token = await getIt.get<Repository>().userRepository.login(email, password);
+      print(token);
     } catch (error) {
       if ((error as RequestError).error == 'INVALID_CREDENTIALS') {
         setState(() {

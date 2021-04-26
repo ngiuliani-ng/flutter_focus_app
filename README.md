@@ -31,3 +31,5 @@ A new Flutter application. Fudeo exercises.
         - Argument: **Introduzione**
     - Lesson 4.2: https://bit.ly/32Lupcl
         - Argument: **SessionRepository**
+    - Lesson 4.3: https://bit.ly/3sTnEj2
+        - Argument: **Aggiunta Token**
