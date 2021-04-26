@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_focus_app/utility/isValid.dart';
 
+import 'package:flutter_focus_app/repositories/repository.dart';
+
 import 'package:flutter_focus_app/pages/auth/register.dart';
 
 import 'package:flutter_focus_app/components/appFormField.dart';
 import 'package:flutter_focus_app/components/appButton.dart';
+
+import 'package:flutter_focus_app/main.dart';
 
 class LoginPage extends StatefulWidget {
   static String routeName = '/login';
@@ -21,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   String emailError;
   String passwordError;
 
-  void onSubmit() {
+  void onSubmit() async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
@@ -35,9 +39,18 @@ class _LoginPageState extends State<LoginPage> {
       when(email.isNotEmpty && !isValidEmail(email), () => setState(() => emailError = 'Inserisci un indirizzo email valido'));
       when(password.isEmpty, () => setState(() => passwordError = 'Inserisci una password'));
     });
+    if (!valid) return;
 
-    if (valid) {
-      print('Login');
+    try {
+      final jwt = await getIt.get<Repository>().userRepository.login(email, password);
+      print('JWT: $jwt');
+    } catch (error) {
+      if ((error as RequestError).error == 'INVALID_CREDENTIALS') {
+        setState(() {
+          emailError = 'Credenziali non valide';
+          passwordError = 'Credenziali non valide';
+        });
+      }
     }
   }
 

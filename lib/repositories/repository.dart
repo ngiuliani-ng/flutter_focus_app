@@ -3,13 +3,19 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:query_params/query_params.dart';
 
+import 'package:flutter_focus_app/repositories/userRepository.dart';
+
 const String HOST = "https://tmpserver.vercel.app";
 
 class Repository {
   HttpClient http;
 
+  UserRepository userRepository;
+
   Repository() {
     http = HttpClient(this);
+
+    userRepository = UserRepository(this);
   }
 }
 
@@ -70,11 +76,11 @@ class HttpClient {
 
   Future<http.Response> postMultipart(
     String url, {
-    Map queryParameters = const {},
+    Map queryParameters,
     Map<String, dynamic> bodyParameters = const {},
     Map<String, File> fileParameters = const {},
   }) async {
-    var request = http.MultipartRequest('POST', buildUrl(url, queryParameters));
+    var request = http.MultipartRequest('POST', buildUrl(url, queryParameters ?? {}));
 
     bodyParameters.forEach((key, value) {
       request.fields[key] = value;
@@ -88,4 +94,10 @@ class HttpClient {
     var response = await request.send();
     return http.Response.fromStream(response);
   }
+}
+
+class RequestError implements Exception {
+  final String error;
+
+  RequestError(this.error);
 }

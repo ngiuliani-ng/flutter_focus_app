@@ -1,31 +1,43 @@
 App:
     Grafica:
-        ✔ Sviluppo SplashPage. @started(21-04-16 05:36) @done(21-04-16 06:16) @lasted(40m33s)
-        ✔ Sviluppo LoginPage. @started(21-04-17 08:39) @done(21-04-17 10:29) @lasted(1h50m42s)
-            ✔ Sviluppo AppFormField. @started(21-04-17 09:17) @done(21-04-17 10:08) @lasted(51m5s)
-                Componente custom riutilizzabile all'interno di tutta l'app.
-            ✔ Estrazione MaterialButton SplashPage. @started(21-04-17 10:10) @done(21-04-17 10:27) @lasted(17m40s)
-                Componente custom riutilizzabile all'interno di tutta l'app.
-        ✔ Sviluppo RegisterPage. @started(21-04-17 18:08) @done(21-04-17 22:20) @lasted(4h12m13s)
-            ✔ Sviluppo data. @started(21-04-17 18:08) @done(21-04-17 21:56) @lasted(3h48m11s)
-            ✔ Sviluppo plans. @started(21-04-17 21:14) @done(21-04-17 22:20) @lasted(1h6m12s)
-                ✔ Sviluppo PlansType. @started(21-04-17 21:55) @done(21-04-17 21:55) @lasted(53s)
-        ✔ Sviluppo HomePage. @started(21-04-18 12:08) @done(21-04-18 13:35) @lasted(1h27m5s)
-    Validazione & Gestione Errori:
-        ✔ Aggiungere il controller all'interno dell'AppFormField. @started(21-04-19 04:49) @done(21-04-19 04:51) @lasted(2m47s)
+        ✔ Sviluppo SplashPage. @done(21-04-16 06:16)
+        ✔ Sviluppo LoginPage. @done(21-04-17 10:29)
+            ✔ Sviluppo AppFormField. @done(21-04-17 10:08)
+                Componente custom riutilizzabile all'interno dell'app.
+                Prefisso: "App".
+            ✔ Sviluppo AppButton (Estrazione MaterialButton SplashPage). @done(21-04-17 10:27)
+                Componente custom riutilizzabile all'interno dell'app.
+                Prefisso: "App".
+        ✔ Sviluppo RegisterPage. @done(21-04-17 22:20)
+            ✔ Sviluppo data. @done(21-04-17 21:56)
+            ✔ Sviluppo plans. @done(21-04-17 22:20)
+                ✔ Sviluppo PlansType. @done(21-04-17 21:55)
+        ✔ Sviluppo HomePage. @done(21-04-18 13:35)
+    Form:
+        ✔ Aggiunto controller nell'AppFormField. @done(21-04-19 04:51)
             Questo parametro ci permette di ottenere il valore inserito nel TextFormField dall'utente.
-        ✔ LoginPage. @started(21-04-19 04:33) @done(21-04-19 06:34) @lasted(2h1m29s)
-        ✔ RegisterPage. @started(21-04-20 05:14) @done(21-04-20 06:27) @lasted(1h13m3s)
-        ✔ Selezionare un'immagine dalla libreria. @started(21-04-21 05:47) @done(21-04-21 06:28) @lasted(41m47s)
+        ✔ Integrazione LoginPage. @done(21-04-19 06:34)
+        ✔ Integrazione RegisterPage. @done(21-04-20 06:27)
+        ✔ Selezione immagine dalla libreria dello smartphone. @done(21-04-21 06:28)
             Libreria: https://pub.dev/packages/image_picker
     Repository Pattern:
         Il Repository Pattern centralizza tutte le chiamate verso un qualsiasi servizio esterno.
         Ogni interfaccia, quando vuole fare una chiamata, deve obbligatoriamente passare per questo punto.
         Libreria: https://pub.dev/packages/http
         Libreria: https://pub.dev/packages/query_params
-        ✔ Repository. @started(21-04-22 06:33) @done(21-04-23 06:44) @lasted(1d11m51s)
-            ✔ .get @started(21-04-23 04:50) @done(21-04-23 06:44) @lasted(1h54m52s)
-            ✔ .post @started(21-04-23 04:50) @done(21-04-23 06:44) @lasted(1h54m53s)
-            ✔ .patch @started(21-04-23 04:50) @done(21-04-23 06:44) @lasted(1h54m53s)
-            ✔ .delete @started(21-04-23 04:50) @done(21-04-23 06:44) @lasted(1h54m54s)
-            ✔ .postMultipart @started(21-04-23 04:50) @done(21-04-23 06:44) @lasted(1h54m55s)
+        ✔ Repository. @done(21-04-23 06:44)
+            ✔ Definizione .get @done(21-04-23 06:44)
+            ✔ Definizione .post @done(21-04-23 06:44)
+            ✔ Definizione .patch @done(21-04-23 06:44)
+            ✔ Definizione .delete @done(21-04-23 06:44)
+            ✔ Definizione .postMultipart @done(21-04-23 06:44)
+        ✔ UserRepository. @done(21-04-26 12:13)
+            ✔ Sviluppo RequestError. @done(21-04-26 10:24)
+            ✔ Sviluppo UserModel. @done(21-04-26 10:24)
+            ✔ Definizione .login @done(21-04-26 10:24)
+            ✔ Definizione .register @done(21-04-26 10:24)
+            ✔ Definizione .profile @done(21-04-26 10:24)
+            ✔ Definizione UserRepository all'interno del Repository. @done(21-04-26 10:24)
+            ✔ Istanziare Repository come singleton con GetIt nel main(). @done(21-04-26 10:24)
+            ✔ Integrazione .login in LoginPage. @done(21-04-26 10:26)
+            ✔ Integrazione .register in RegisterPage. @done(21-04-26 12:13)

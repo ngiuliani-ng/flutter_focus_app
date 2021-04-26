@@ -6,10 +6,14 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:flutter_focus_app/utility/isValid.dart';
 
+import 'package:flutter_focus_app/repositories/repository.dart';
+
 import 'package:flutter_focus_app/models/plansType.dart';
 
 import 'package:flutter_focus_app/components/appFormField.dart';
 import 'package:flutter_focus_app/components/appButton.dart';
+
+import 'package:flutter_focus_app/main.dart';
 
 class RegisterPage extends StatefulWidget {
   static String routeName = '/register';
@@ -72,43 +76,53 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  void onSubmit() {
-    if (_pageIndex == 0) {
-      final name = nameController.text.trim();
-      final surname = surnameController.text.trim();
-      final email = emailController.text.trim();
-      final password = passwordController.text.trim();
-      final passwordConfirm = passwordConfirmController.text.trim();
+  void onSubmit() async {
+    final name = nameController.text.trim();
+    final surname = surnameController.text.trim();
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+    final passwordConfirm = passwordConfirmController.text.trim();
 
-      setState(() {
-        nameError = null;
-        surnameError = null;
-        emailError = null;
-        passwordError = null;
-        passwordConfirmError = null;
-      });
+    setState(() {
+      nameError = null;
+      surnameError = null;
+      emailError = null;
+      passwordError = null;
+      passwordConfirmError = null;
+    });
 
-      final valid = isValidBlock((bool Function(bool, Function) when) {
-        when(name.isEmpty, () => setState(() => nameError = 'Inserisci il nome'));
-        when(surname.isEmpty, () => setState(() => surnameError = 'Inserisci il cognome'));
-        when(email.isEmpty, () => setState(() => emailError = 'Inserisci un indirizzo email'));
-        when(email.isNotEmpty && !isValidEmail(email), () => setState(() => emailError = 'Inserisci un indirizzo email valido'));
-        when(password.isEmpty, () => setState(() => passwordError = 'Inserisci una password'));
-        when(password.isNotEmpty && password.length < 8, () => setState(() => passwordError = 'Inserisci una password almeno di 8 caratteri'));
-        when(passwordConfirm.isEmpty, () => setState(() => passwordConfirmError = 'Inserisci una password'));
-        when(password.isNotEmpty && passwordConfirm.isEmpty && password != passwordConfirm,
-            () => setState(() => passwordConfirmError = 'Le password non corrispondono'));
-        when(password.isNotEmpty && passwordConfirm.isNotEmpty && password != passwordConfirm,
-            () => setState(() => passwordConfirmError = 'Le password non corrispondono'));
-      });
+    final valid = isValidBlock((bool Function(bool, Function) when) {
+      when(name.isEmpty, () => setState(() => nameError = 'Inserisci il nome'));
+      when(surname.isEmpty, () => setState(() => surnameError = 'Inserisci il cognome'));
+      when(email.isEmpty, () => setState(() => emailError = 'Inserisci un indirizzo email'));
+      when(email.isNotEmpty && !isValidEmail(email), () => setState(() => emailError = 'Inserisci un indirizzo email valido'));
+      when(password.isEmpty, () => setState(() => passwordError = 'Inserisci una password'));
+      when(password.isNotEmpty && password.length < 8, () => setState(() => passwordError = 'Inserisci una password almeno di 8 caratteri'));
+      when(passwordConfirm.isEmpty, () => setState(() => passwordConfirmError = 'Inserisci una password'));
+      when(password.isNotEmpty && passwordConfirm.isEmpty && password != passwordConfirm,
+          () => setState(() => passwordConfirmError = 'Le password non corrispondono'));
+      when(password.isNotEmpty && passwordConfirm.isNotEmpty && password != passwordConfirm,
+          () => setState(() => passwordConfirmError = 'Le password non corrispondono'));
+    });
+    if (!valid) return;
 
-      if (valid && !_isPremiumAccount) {
-        print('Registrazione Account Standard');
-      } else if (valid && _isPremiumAccount) {
-        _pageController.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.linear);
+    if (_pageIndex == 0 && _isPremiumAccount) {
+      _pageController.animateToPage(1, duration: Duration(milliseconds: 250), curve: Curves.linear);
+    } else {
+      try {
+        final jwt = await getIt.get<Repository>().userRepository.register(
+              name,
+              surname,
+              email,
+              password,
+              _selectedPlanType,
+              _userAvatar,
+            );
+
+        print('JWT: $jwt');
+      } catch (error) {
+        print(error);
       }
-    } else if (_pageIndex == 1) {
-      print('Registrazione Account Premium');
     }
   }
 

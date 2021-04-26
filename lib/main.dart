@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:get_it/get_it.dart';
+
+import 'package:flutter_focus_app/repositories/repository.dart';
+
 import 'package:flutter_focus_app/pages/auth/splash.dart';
 import 'package:flutter_focus_app/pages/auth/login.dart';
 import 'package:flutter_focus_app/pages/auth/register.dart';
 import 'package:flutter_focus_app/pages/home/home.dart';
 
+final getIt = GetIt.instance;
+
 void main() {
+  getIt.registerSingleton(Repository());
+
   runApp(App());
 }
 
