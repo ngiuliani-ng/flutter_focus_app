@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_focus_app/theme/color.dart';
+
 import 'package:flutter_focus_app/utility/isValid.dart';
 
 import 'package:flutter_focus_app/repositories/repository.dart';
@@ -80,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Text(
             'Non hai ancora un account?',
             style: TextStyle(
-              color: Color(0xff1a73e8),
+              color: appBlueColor,
             ),
           ),
         ),
@@ -144,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 64,
             ),
             AppButton(
-              color: Color(0xff1a73e8),
+              color: appBlueColor,
               child: Text('Login'),
               onPressed: onSubmit,
             ),

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
 
+import 'package:flutter_focus_app/theme/color.dart';
+
 import 'package:flutter_focus_app/utility/isValid.dart';
 
 import 'package:flutter_focus_app/repositories/repository.dart';
@@ -165,7 +167,7 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Text(
             'Hai già un account?',
             style: TextStyle(
-              color: Color(0xff1a73e8),
+              color: appBlueColor,
             ),
           ),
         ),
@@ -291,7 +293,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 32,
             ),
             SwitchListTile(
-              activeColor: Color(0xff1a73e8),
+              activeColor: appBlueColor,
               title: Text(
                 'Registra un account premium',
                 style: TextStyle(
@@ -306,7 +308,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 64,
             ),
             AppButton(
-              color: Color(0xff1a73e8),
+              color: appBlueColor,
               child: Text(_isPremiumAccount ? 'Personalizza il tuo account' : 'Crea il tuo account'),
               onPressed: onSubmit,
             ),
@@ -370,7 +372,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 64,
             ),
             AppButton(
-              color: Color(0xff1a73e8),
+              color: appBlueColor,
               child: Text('Attiva il tuo piano | € ${getPlanPrice()}'),
               onPressed: onSubmit,
             ),
@@ -386,7 +388,7 @@ class _RegisterPageState extends State<RegisterPage> {
     @required PlansType value,
   }) {
     return RadioListTile(
-      activeColor: Color(0xff1a73e8),
+      activeColor: appBlueColor,
       value: value,
       groupValue: _selectedPlanType,
       onChanged: (type) => switchPlanType(type),
