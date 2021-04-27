@@ -1,12 +1,18 @@
 import 'dart:io';
+import 'dart:isolate';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
 
 import 'package:flutter_focus_app/theme/color.dart';
 
 import 'package:flutter_focus_app/utility/isValid.dart';
+import 'package:flutter_focus_app/utility/imageResizerIsolate.dart';
 
 import 'package:flutter_focus_app/repositories/repository.dart';
 
@@ -122,7 +128,7 @@ class _RegisterPageState extends State<RegisterPage> {
               _selectedPlanType,
               _userAvatar,
             );
-        await Navigator.popAndPushNamed(context, HomePage.routeName); // Elimino e la sostituisco la schermata corrente.
+        await Navigator.popAndPushNamed(context, HomePage.routeName); // Elimino e sostituisco la schermata corrente.
       } catch (error) {
         print('Error: $error');
       }
@@ -134,8 +140,27 @@ class _RegisterPageState extends State<RegisterPage> {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
+      Completer<List<int>> completer = Completer(); // Completer dell'Isolate.
+      ReceivePort isolateToMainStream = ReceivePort(); // Canale di Comunicazione dell'Isolate.
+      isolateToMainStream.listen((message) => completer.complete(message));
+
+      Isolate.spawn(
+        imageResizerIsolate,
+        ImageResizerData(
+          sendPort: isolateToMainStream.sendPort, // Porta del Canale di Comunicazione dell'Isolate.
+          image: File(pickedFile.path),
+          size: 300,
+          quality: 70,
+        ),
+      );
+
+      final imageEncodeJpg = await completer.future; // Chiusura Completer.
+      final tempDir = await getTemporaryDirectory();
+      final imageResizedPath = path.join(tempDir.path, '${Uuid().v4()}.jpg');
+      final imageResized = await File(imageResizedPath).writeAsBytes(imageEncodeJpg);
+
       setState(() {
-        _userAvatar = File(pickedFile.path);
+        _userAvatar = imageResized;
       });
     }
   }

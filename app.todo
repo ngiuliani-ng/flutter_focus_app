@@ -53,3 +53,20 @@ App:
         ✔ Inizializzazione SessionRepository. nella SplashPage. @done(21-04-26 15:47)
             ✔ Verifica token. @done(21-04-26 15:47)
         ✔ Definizione .logout nella HomePage. @done(21-04-26 15:47)
+    Processi in Background:
+        Il processo di ottimizzazione dell'immagine viene considerato computazionalmente come intensivo,
+        infatti proprio per questo motivo è necessario non eseguirlo sul Thread principale. (Thread = Processo)
+        In Flutter le funzioni eseguite su Thread separati, quindi in background, vengono chiamate Isolate.
+        Tutti i Thread possono comunicare fra loro tramite delle porte specifiche in dei canali di comunicazione.
+        ✔ Definizione Completer. @done(21-04-27 19:08)
+        ✔ Definizione ReceivePort. @done(21-04-27 19:08)
+        ✔ Isolate @done(21-04-27 19:08)
+            ✔ Definizione .imageResizerIsolate @done(21-04-27 19:08)
+                Libreria: https://pub.dev/packages/image
+            ✔ Definizione ImageResizerData. @done(21-04-27 19:08)
+        ✔ Apertura directory temporanea. @done(21-04-27 19:08)
+            Libreria: https://pub.dev/packages/path_provider
+        ✔ Definizione percorso immagine ottimizzata. @done(21-04-27 19:08)
+            Libreria: https://pub.dev/packages/path
+            Libreria: https://pub.dev/packages/uuid
+        ✔ Salvataggio immagine ottimizzata. @done(21-04-27 19:08)

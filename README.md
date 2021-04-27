@@ -35,3 +35,7 @@ A new Flutter application. Fudeo exercises.
         - Argument: **Gestione Token**
     - Lesson 4.4: https://bit.ly/3gDMxwM
         - Argument: **Logica Token**
+    - Lesson 5.1: https://bit.ly/3evSHfW
+        - Argument: **Introduzione**
+    - Lesson 5.2: https://bit.ly/3xrsMhZ
+        - Argument: **Isolate**

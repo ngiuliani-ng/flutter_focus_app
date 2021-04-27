@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       await getIt.get<Repository>().userRepository.login(email, password);
-      await Navigator.popAndPushNamed(context, HomePage.routeName); // Elimino e la sostituisco la schermata corrente.
+      await Navigator.popAndPushNamed(context, HomePage.routeName); // Elimino e sostituisco la schermata corrente.
     } catch (error) {
       print('Error: $error');
 

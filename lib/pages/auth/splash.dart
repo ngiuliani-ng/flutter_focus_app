@@ -28,10 +28,10 @@ class _SplashPageState extends State<SplashPage> {
 
       if (isLogged) {
         await Future.delayed(Duration(seconds: 2));
-        await Navigator.popAndPushNamed(context, HomePage.routeName); // Elimino e la sostituisco la schermata corrente.
+        await Navigator.popAndPushNamed(context, HomePage.routeName); // Elimino e sostituisco la schermata corrente.
       } else {
         await Future.delayed(Duration(seconds: 2));
-        await Navigator.popAndPushNamed(context, LoginPage.routeName); // Elimino e la sostituisco la schermata corrente.
+        await Navigator.popAndPushNamed(context, LoginPage.routeName); // Elimino e sostituisco la schermata corrente.
       }
     });
   }

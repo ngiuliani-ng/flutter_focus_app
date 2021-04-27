@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   Widget appBar() {
     return AppBar(
       elevation: 0,
+      automaticallyImplyLeading: false,
       centerTitle: false,
       titleSpacing: 0,
       leading: FutureBuilder(
@@ -45,6 +46,7 @@ class _HomePageState extends State<HomePage> {
             final user = snapshot.data;
             return Center(
               child: CircleAvatar(
+                backgroundColor: Colors.black12,
                 backgroundImage: NetworkImage(user.avatarUrl),
               ),
             );
