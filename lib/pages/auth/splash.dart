@@ -3,8 +3,6 @@ import 'package:flutter/scheduler.dart';
 
 import 'package:flutter_focus_app/repositories/repository.dart';
 
-import 'package:flutter_focus_app/models/user.dart';
-
 import 'package:flutter_focus_app/pages/home/home.dart';
 import 'package:flutter_focus_app/pages/auth/login.dart';
 
@@ -20,8 +18,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  UserModel userData;
-
   @override
   void initState() {
     super.initState();
@@ -31,12 +27,11 @@ class _SplashPageState extends State<SplashPage> {
       bool isLogged = getIt.get<Repository>().sessionRepository.isLogged();
 
       if (isLogged) {
-        userData = await getIt.get<Repository>().userRepository.profile();
         await Future.delayed(Duration(seconds: 2));
-        await Navigator.popAndPushNamed(context, HomePage.routeName, arguments: userData);
+        await Navigator.popAndPushNamed(context, HomePage.routeName); // Elimino e la sostituisco la schermata corrente.
       } else {
         await Future.delayed(Duration(seconds: 2));
-        await Navigator.popAndPushNamed(context, LoginPage.routeName);
+        await Navigator.popAndPushNamed(context, LoginPage.routeName); // Elimino e la sostituisco la schermata corrente.
       }
     });
   }

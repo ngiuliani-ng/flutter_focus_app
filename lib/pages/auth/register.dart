@@ -11,7 +11,6 @@ import 'package:flutter_focus_app/utility/isValid.dart';
 import 'package:flutter_focus_app/repositories/repository.dart';
 
 import 'package:flutter_focus_app/models/plansType.dart';
-import 'package:flutter_focus_app/models/user.dart';
 
 import 'package:flutter_focus_app/pages/home/home.dart';
 
@@ -88,8 +87,6 @@ class _RegisterPageState extends State<RegisterPage> {
     final password = passwordController.text.trim();
     final passwordConfirm = passwordConfirmController.text.trim();
 
-    UserModel userData;
-
     setState(() {
       nameError = null;
       surnameError = null;
@@ -125,8 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
               _selectedPlanType,
               _userAvatar,
             );
-        userData = await getIt.get<Repository>().userRepository.profile();
-        await Navigator.popAndPushNamed(context, HomePage.routeName, arguments: userData);
+        await Navigator.popAndPushNamed(context, HomePage.routeName); // Elimino e la sostituisco la schermata corrente.
       } catch (error) {
         print('Error: $error');
       }
