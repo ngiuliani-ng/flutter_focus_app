@@ -72,7 +72,7 @@ class _SplashPageState extends State<SplashPage> {
                     height: 8,
                   ),
                   Text(
-                    'Funziona tutto meglio quando si collabora.',
+                    'Funziona tutto meglio quando si collabora',
                     style: TextStyle(
                       color: Colors.black45,
                     ),
