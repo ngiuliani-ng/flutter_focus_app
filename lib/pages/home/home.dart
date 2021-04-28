@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:shimmer/shimmer.dart';
+
 import 'package:flutter_focus_app/repositories/repository.dart';
 
 import 'package:flutter_focus_app/models/user.dart';
@@ -51,9 +53,11 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           } else {
-            return Center(
-              child: CircleAvatar(
-                backgroundColor: Colors.black12,
+            return shimmerWidget(
+              widget: Center(
+                child: CircleAvatar(
+                  backgroundColor: Colors.black12,
+                ),
               ),
             );
           }
@@ -90,11 +94,11 @@ class _HomePageState extends State<HomePage> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                loadingContainer(height: 20), // [height] = [fontSize] -> [user.fullName].
+                shimmerContainer(height: 20), // [height] = [fontSize] -> [user.fullName].
                 SizedBox(
                   height: 4,
                 ),
-                loadingContainer(height: 12), // [height] = [fontSize] -> [user.email].
+                shimmerContainer(height: 12), // [height] = [fontSize] -> [user.email].
               ],
             );
           }
@@ -115,15 +119,31 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget loadingContainer({
+  Widget shimmerContainer({
     @required double height,
   }) {
-    return Container(
-      height: height,
-      decoration: BoxDecoration(
-        color: Colors.black12,
-        borderRadius: BorderRadius.circular(height / 4),
+    return shimmerWidget(
+      widget: Container(
+        height: height,
+        decoration: BoxDecoration(
+          color: Colors.black12,
+          borderRadius: BorderRadius.circular(height / 4),
+        ),
       ),
+    );
+  }
+
+  Widget shimmerWidget({
+    @required Widget widget,
+  }) {
+    return Shimmer.fromColors(
+      baseColor: Colors.black,
+      highlightColor: Colors.transparent,
+      direction: ShimmerDirection.ltr,
+      period: Duration(
+        milliseconds: 500,
+      ),
+      child: widget,
     );
   }
 }
