@@ -1,6 +1,6 @@
 /// Inizialmente il bool [valid] viene inizializzato true all'interno della Function [isValidBlock].
 ///
-/// Quando anche una solo un [condition] sarà true, [valid] diventerà false.
+/// Quando anche una solo un [condition] sarà false, [valid] diventerà false.
 ///
 /// ```dart
 /// valid = valid && !condition;
